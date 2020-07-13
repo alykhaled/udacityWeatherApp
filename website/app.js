@@ -10,7 +10,7 @@ const temp = document.getElementById('temp');
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-const apikey = '&appid=a872f06d2c0e0e35ebc8efa8633844d2';
+const apikey = '&appid=a872f06d2c0e0e35ebc8efa8633844d2&units=metric';
 const url = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
 document.getElementById('generate').addEventListener('click', generateWeatherFunc);
@@ -39,10 +39,9 @@ const updateUI = async(url='') => {
     const req = await fetch(url);
     try {
         const UIData = await req.json();
-        date.innerHTML = UIData[0].date;
-        temp.innerHTML = UIData[0].temperature;
-        content.innerHTML = UIData[0].feelings;
-        label.innerHTML = 'Most Recent Entry';
+        date.innerHTML = UIData.date;
+        temp.innerHTML = UIData.temperature;
+        content.innerHTML = UIData.feelings;
     } catch(error) {
         console.error('ERROR', error);
     };
